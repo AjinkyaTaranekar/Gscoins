@@ -142,7 +142,7 @@ def add_transaction():
         return 'Some elements of the transaction are missing', 400
     index = blockchain.add_transaction(json['sender'], json['receiver'], json['amount'])
     response = {'message': f'This transaction will be added to Block {index}'}
-    return jsonify(response), 200
+    return jsonify(response), 201
 
 # Part 3 - Decentralizing our Blockchain
 
@@ -172,4 +172,4 @@ def replace_chain():
     return jsonify(response), 200
 
 # Running the app
-app.run(host = '0.0.0.0', port = 5000)
+app.run(host = '0.0.0.0', port = 5001)
