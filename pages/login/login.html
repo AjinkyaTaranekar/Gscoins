@@ -1,0 +1,36 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>GS-Coins</title>
+            </head>
+        <body>
+                <div class="wrapper fadeInDown">
+                        <div id="formContent">
+                          <!-- Tabs Titles -->
+                          <h2 class="active"> Sign In </h2>
+                          <h2 class="inactive underlineHover">Sign Up </h2>
+                      
+                          <!-- Icon -->
+                          <div class="fadeIn first">
+                            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+                          </div>
+
+                <form action="{{ url_for('registration') }}" method="post">
+                        Username: <input type="text" id="login" class="fadeIn second" name="uname"><br>
+                        Password: <input type="text" id="login" class="fadeIn third" name="Password"><br>
+                        Amount to be added: <input type="text" name="price"><br>
+                </form>
+                <br>
+                <br>
+                <a  href="../market/market.html"><button class="button" class="fadeIn fourth">SUBMIT</button></a>
+                <br>            
+        
+            <div class="Contact">
+            <h2><u><i>Contact us:</i></u></h2>
+            <h3>Team Squadron Supreme</h3>
+            <h3> PROUD STUDENTS OF <a href="www.sgsits.ac.in"> SGSITS INDORE</a></h3>
+            <br>
+            </div>	
+        </body>
+        </html>

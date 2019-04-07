@@ -1,0 +1,45 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>GS-Coins</title>
+            <script>
+                
+                const onTransactionSubmit = async () => {
+                    var requestBody={
+                        "sender" : "You",
+                        "receiver" : document.getElementById("receiver").value,
+                        "amount" : document.getElementById("amount").value
+                    }
+                    const response = await fetch('http://localhost:5000/add_transaction', {
+                        method: 'POST',
+                        body: JSON.stringify(requestBody),
+                        mode: "no-cors",
+                        headers:{
+                          'Content-Type': 'application/json'
+                        },
+                      });
+                    const myJson = await response.json();
+
+                    alert(myJson.message)
+                }
+            </script>
+        </head>
+        <body>
+
+                <form border="10" align="centre">
+                        Reciever: <input id="receiver" type="text" name="reciever"><br>
+                        Amount to br paid: <input id="amount" type="text" name="amount"><br>
+                </form>
+        
+                <button class="button" style="float:right" onclick=onTransactionSubmit() >SUBMIT</button>
+                <br>            
+        
+            <div class="Contact">
+            <h2><u><i>Contact us:</i></u></h2>
+            <h3>Team Squadron Supreme</h3>
+            <h3> PROUD STUDENTS OF <a href="www.sgsits.ac.in"> SGSITS INDORE</a></h3>
+            <br>
+            </div>	
+        </body>
+        </html>

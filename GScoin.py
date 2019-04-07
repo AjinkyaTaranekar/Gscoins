@@ -1,10 +1,11 @@
 import datetime
 import hashlib
 import json
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import requests
 from uuid import uuid4
 from urllib.parse import urlparse
+from flask_cors import CORS
 
 # Part 1 - Building a Blockchain
 
@@ -92,13 +93,19 @@ class Blockchain:
 
 # Creating a Web App
 app = Flask(__name__)
-
+CORS(app)
 # Creating an address for the node on Port 5000
 node_address = str(uuid4()).replace('-', '')
 
 # Creating a Blockchain
 blockchain = Blockchain()
 
+# Getting username
+@app.route('/registration', methods = ['POST'])
+def registration():
+    price = request.form['price']
+    
+    
 # Mining a new block
 @app.route('/mine_block', methods = ['GET'])
 def mine_block():
@@ -106,7 +113,7 @@ def mine_block():
     previous_proof = previous_block['proof']
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
-    blockchain.add_transaction(sender = node_address, receiver = 'Hadelin', amount = 1)
+    blockchain.add_transaction( sender = 'You' , receiver = node_address, amount = request.form['price'])
     block = blockchain.create_block(proof, previous_hash)
     response = {'message': 'Congratulations, you just mined a block!',
                 'index': block['index'],
@@ -116,8 +123,10 @@ def mine_block():
                 'transactions': block['transactions']}
     return jsonify(response), 200
 
+
 # Getting the full Blockchain
 @app.route('/get_chain', methods = ['GET'])
+# @crossdomain(origin='*')
 def get_chain():
     response = {'chain': blockchain.chain,
                 'length': len(blockchain.chain)}
@@ -172,4 +181,4 @@ def replace_chain():
     return jsonify(response), 200
 
 # Running the app
-app.run(host = '0.0.0.0', port = 5000)
+app.run(host = '0.0.0.0', port = 5000, debug=True)

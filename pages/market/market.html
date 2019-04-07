@@ -1,0 +1,36 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>GS-Coins</title>
+            <script>
+                
+                const renderChainList = async () => {
+                    const response = await fetch('http://localhost:5000/get_chain');
+                    const myJson = await response.json();
+                    document.getElementById("chainList").innerHTML = JSON.stringify(myJson)
+                }
+                
+                window.onload = function() {
+                    renderChainList();
+                };
+                
+            </script>
+        </head>
+        <body>
+                <script>renderChainList();</script>
+              <h2>Account Balance:</h2>
+
+              <h3 id="chainList" ></h3>
+
+              <a  href="mining.html"><button>Mining</button></a>
+              <a  href="transaction.html"><button>transaction</button></a>
+
+            <div class="Contact">
+            <h2><u><i>Contact us:</i></u></h2>
+            <h3>Team Squadron Supreme</h3>
+            <h3> PROUD STUDENTS OF <a href="www.sgsits.ac.in"> SGSITS INDORE</a></h3>
+            <br>
+            </div>	
+        </body>
+        </html>
